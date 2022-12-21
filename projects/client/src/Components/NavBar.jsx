@@ -11,9 +11,7 @@ import { SearchIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {HiOutlineHomeModern} from "react-icons/hi2"
 import Logo from "../Asset/Logo.png"
 import LogoOnly from "../Asset/Logo_only.png"
-
-//import component
-import Category from './Category'
+import { Link } from 'react-router-dom'
 
 
 const NavBar = () => {
@@ -79,7 +77,7 @@ const NavBar = () => {
                         </Box>
                         <Box ml={4} display={display} marginLeft="auto">
                             <Text fontSize="14px"  fontFamily="Poppins" cursor="pointer"  _hover={{ fontWeight: "bold" }} color="black" >
-                                 Jadikan Rumah Anda <Text display="flex">Holistay <Center marginLeft="2px"><HiOutlineHomeModern size="14px"/></Center></Text>
+                                Jadikan Rumah Anda <Text display="flex">Holistay <Center marginLeft="2px"><HiOutlineHomeModern size="14px"/></Center></Text>
                             </Text>
                         </Box>
                         <Box marginLeft="auto" display={displayTablet}>
@@ -98,6 +96,7 @@ const NavBar = () => {
                                     <MenuItem>Register</MenuItem>
                                     <MenuItem>Login</MenuItem>
                                     <MenuDivider />
+                                    <MenuItem as={Link} to="/profile">Profile</MenuItem>
                                     <MenuItem>Make Your Home Holistay</MenuItem>
                                     <MenuItem>Heko</MenuItem>
                                 </MenuList>
@@ -133,7 +132,6 @@ const NavBar = () => {
                     </Box>
                 </Container>
             </Center>
-            <Category />
         </Box>
     )
 }
