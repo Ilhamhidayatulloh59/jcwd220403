@@ -14,7 +14,7 @@ const Home = () => {
       <Footer/>
       <NavBot/>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
