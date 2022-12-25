@@ -27,10 +27,11 @@ import LogoOnly from '../Asset/Logo_only.png';
 
 //import component
 import Category from './Category';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
   const [isMobile] = useMediaQuery('(max-width: 481px)');
+  const location = useLocation()
 
   const display = useBreakpointValue({
     base: 'none',
@@ -70,7 +71,7 @@ const NavBar = () => {
           }}
         >
           <Box display='flex' alignItems='center'>
-            <Box>
+            <Box as={Link} to="/">
               <Image
                 src={Logo}
                 width={logoTabletAndDesktop}
@@ -144,6 +145,7 @@ const NavBar = () => {
                     <Link to={'/login'}>Login</Link>
                   </MenuItem>
                   <MenuDivider />
+                  <MenuItem as={Link} to="/profile">Profile</MenuItem>
                   <MenuItem>Make Your Home Holistay</MenuItem>
                   <MenuItem>Heko</MenuItem>
                 </MenuList>
@@ -171,7 +173,7 @@ const NavBar = () => {
           </Box>
         </Container>
       </Center>
-      <Category />
+      {location.pathname === "/" ? <Category /> : null }
     </Box>
   );
 };

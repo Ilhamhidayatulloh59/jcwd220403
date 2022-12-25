@@ -9,6 +9,7 @@ import LoginCard from "./Pages/Login";
 import Home from "./Pages/Home";
 import SignupPortal from "./Pages/SignupPortal";
 import ErrorPage from "./Pages/ErrorPage";
+import Profile from "./Pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     path: "/test",
     element: <SignupPortal />,
   },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -49,4 +54,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();

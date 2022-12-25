@@ -38,8 +38,8 @@ function NavBot() {
         return (
             <Box position="fixed" zIndex={1} style={{minWidth:"100%"}} p={0} bottom={0}>
                 <Center>
-                    <Flex w={[400, 450, 500]} h="7vh" bgColor="white" justifyContent="center" color="black" dropShadow="2xl" >
-                        <Flex justifyContent="space-evenly" align="center" w={[400, 450, 500]} >
+                    <Flex w="90vw" h="7vh" bgColor="white" justifyContent="center" color="black" dropShadow="2xl" >
+                        <Flex justifyContent="space-evenly" align="center" w="90vw" >
                             {menus.map((item, index) => {
                                 return (
                                     <VStack w="50px" pt="2" h="7vh" justifyContent="center" _hover={{ cursor: "pointer" }} borderTop={index === selected ? "2px" : ""}

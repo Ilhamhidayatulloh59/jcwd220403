@@ -53,7 +53,7 @@ function ProfileSetting() {
                                 <Input defaultValue="saya" type="text" name="bio" variant="outline"/>
                         </FormControl>
                         <FormControl>
-                            <FormLabel htmlFor="password">Birthday</FormLabel>
+                            <FormLabel htmlFor="password">Birthdate</FormLabel>
                                 <Input defaultValue="2000-09-05" type="date" name="lokasi" variant="outline"/>
                         </FormControl>
                         <FormControl>
@@ -97,7 +97,7 @@ function ProfileSetting() {
                                 <Input defaultValue="saya" type="text" name="bio" variant="outline"/>
                         </FormControl>
                         <FormControl>
-                            <FormLabel htmlFor="password">Birthday</FormLabel>
+                            <FormLabel htmlFor="password">Birthdate</FormLabel>
                                 <Input defaultValue="2000-09-05" type="date" name="lokasi" variant="outline"/>
                         </FormControl>
                         <FormControl>
