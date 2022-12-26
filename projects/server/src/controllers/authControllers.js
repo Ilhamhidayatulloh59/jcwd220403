@@ -1,10 +1,11 @@
+require('dotenv').config();
 const database = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('../helpers/nodemailer');
+const nodemailer = require('../middlewares/nodemailer');
 const fs = require('fs');
 const handlebars = require('handlebars');
-const { OTP_generator } = require('../helpers/otp_service');
+const { OTP_generator } = require('../middlewares/otp_service');
 
 const user = database.user;
 
@@ -153,23 +154,37 @@ module.exports = {
 
       const token = jwt.sign(
         { email: emailExist.email },
-        process.env.JWT_LOGIN_SECRET_KEY
+        process.env.ACCESS_TOKEN_SECRET_KEY,
+        { expiresIn: '1h' }
+      );
+      const refreshToken = jwt.sign(
+        { email: emailExist.email },
+        process.env.REFRESH_TOKEN_SECRET_KEY,
+        { expiresIn: '1d' }
+      );
+
+      await user.update(
+        { refreshToken },
+        {
+          where: {
+            email: emailExist.email,
+          },
+        }
       );
 
       res
-        .header('Access-Control-Allow-Credentials', true)
-        .cookie('token', token, {
-          expires: new Date(Date.now() + 900000),
-          httpOnly: false,
-          path: '/',
+        // .header('Access-Control-Allow-Credentials', true)
+        .cookie('refreshToken', refreshToken, {
+          maxAge: 28 * 60 * 60 * 1000,
+          httpOnly: true,
         })
-        .send({
-          message: 'Login success',
-          user: {
-            email: emailExist.email,
-            role: 'user',
-            token,
-          },
+        .json({
+          token,
+          // user: {
+          //   userEmail: emailExist.email,
+          //   userRole: 'user',
+          //   userToken: token,
+          // },
         });
     } catch (error) {
       console.log(error);
@@ -254,17 +269,22 @@ module.exports = {
         });
       }
 
-      const token = jwt.sign(
-        { email },
-        process.env.JWT_RESET_PASSWORD_SECRET_KEY,
-        {
-          expiresIn: '10m',
-        }
-      );
+      const token = jwt.sign({ email }, process.env.RESET_PASSWORD_SECRET_KEY, {
+        expiresIn: '10m',
+      });
 
       //TODO: finish forgot password
 
       res.status(200).send('Success');
+    } catch (error) {
+      console.log(error);
+      res.status(400).send(error);
+    }
+  },
+
+  test: async (req, res) => {
+    try {
+      res.send('test auth controller');
     } catch (error) {
       console.log(error);
       res.status(400).send(error);
